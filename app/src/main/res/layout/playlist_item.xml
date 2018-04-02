@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    >
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="63dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="11dp"
+        android:text="@string/songName"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textName"
+        android:layout_alignStart="@+id/textName"
+        android:layout_alignTop="@+id/textName"
+        android:layout_marginTop="17dp"
+        android:text="@string/albumName"
+        android:textColor="#000000"
+        android:id="@+id/textAlbum" />
+
+    <ImageView
+        tools:ignore="Content Description"
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_toLeftOf="@+id/textName"
+        android:layout_toStartOf="@+id/textAlbum"
+        app:srcCompat="@drawable/icon_music"
+
+       />
+
+    <ImageView
+
+        android:id="@+id/play"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textName"
+        android:layout_marginEnd="57dp"
+        android:layout_marginRight="57dp"
+        app:srcCompat="@drawable/ic_play" />
+
+    <ImageView
+        android:id="@+id/stop"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignBottom="@+id/play"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/stop" />
+
+
+</RelativeLayout>
