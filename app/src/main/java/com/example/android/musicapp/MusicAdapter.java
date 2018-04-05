@@ -70,20 +70,32 @@ public class MusicAdapter extends BaseAdapter {
         holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (flag){
-                    mediaPlayer = MediaPlayer.create(context, music.getSong());
-                    flag = false;
-                }
-                if (mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
-                    holder.play.setImageResource(R.drawable.ic_play);
-                }else {
-                    mediaPlayer.start();
-                    holder.play.setImageResource(R.drawable.pause);
-                }
+               if (flag){
+    flag = false;
+}
 
+if (mediaPlayer == null){
+            mediaPlayer = MediaPlayer.create(context, music.getSong());
+            mediaPlayer.start();
+            currentPosition = position;
+        }else {
+            if (currentPosition != position) {
+                mediaPlayer.release();
+                mediaPlayer = MediaPlayer.create(context, music.getSong());
+                mediaPlayer.start();
+        currentPosition = position;
+    } else {
+   if (mediaPlayer.isPlaying()) {
+        mediaPlayer.pause();
+        holder.play.setImageResource(R.drawable.ic_play);
+
+    } else {
+        mediaPlayer.start();
+        holder.play.setImageResource(R.drawable.pause);
+    }
+}
             }
-        });
+        }});
 
         holder.stop.setOnClickListener(new View.OnClickListener() {
             @Override
