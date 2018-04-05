@@ -70,12 +70,9 @@ public class MusicAdapter extends BaseAdapter {
         holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (flag){
-    flag = false;
-}
-
-if (mediaPlayer == null){
-            mediaPlayer = MediaPlayer.create(context, music.getSong());
+             if (flag){
+   flag = false;
+    mediaPlayer = MediaPlayer.create(context, music.getSong());
             mediaPlayer.start();
             currentPosition = position;
         }else {
