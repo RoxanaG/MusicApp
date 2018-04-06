@@ -41,9 +41,6 @@
         <activity android:name=".playlistgambino"
             android:label="Childish Gambino"
             android:launchMode="singleTop"/>
-<activity android:name=".mediaPlayer"
-    android:label="Media Player"
-    android:launchMode="singleTop"/>
     </application>
 
 </manifest>
