@@ -7,7 +7,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class playlistbob extends AppCompatActivity {
+public class  playlistbob extends AppCompatActivity {
 
     private ArrayList<Music> arrayList;
     private ListView playlist;
@@ -17,8 +17,8 @@ private MusicAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
-        ListView playlist = (ListView) findViewById(R.id.playerList);
-        ArrayList<Music> words = new ArrayList<Music>();
+        ListView playlist =  findViewById(R.id.playerList);
+        ArrayList<Music> arrayList = new ArrayList<>();
         arrayList.add(new Music("Like a rolling stone", "Highway 61 Revisited", R.raw.likearollingstone));
         arrayList.add(new Music("Blowin in The Wind", "Freewheelin' Bob Dylan", R.raw.blowing));
         arrayList.add(new Music("A Hard Rain's A-Gonna Fall", "Freewheelin' Bob Dylan", R.raw.hardrain));

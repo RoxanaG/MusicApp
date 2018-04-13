@@ -27,6 +27,7 @@ public class MusicAdapter extends BaseAdapter {
         this.arrayList = arrayList;
     }
 
+
     @Override
     public int getCount() {
         return arrayList.size();
@@ -47,6 +48,7 @@ public class MusicAdapter extends BaseAdapter {
         ImageView play, stop;
     }
 
+
     @Override
     public View getView(final int pos, View convertView, final ViewGroup parent) {
         final Holder holder;
@@ -61,10 +63,11 @@ public class MusicAdapter extends BaseAdapter {
             holder.stop = convertView.findViewById(R.id.stop);
             currentPlayingButton = holder.play;
             convertView.setTag(holder);
-
         } else {
             holder = (Holder) convertView.getTag();
+
         }
+
 
         final Music music = (Music) arrayList.get(position);
         holder.textName.setText(music.getName());
@@ -72,63 +75,75 @@ public class MusicAdapter extends BaseAdapter {
         if (currentPlayingButton != null) {
             holder.play.setImageResource(R.drawable.ic_play);
             currentPlayingButton = holder.play;
-
-            }
-
-
-
+        }
         holder.play.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 if (mediaPlayer == null) {
+
                     mediaPlayer = MediaPlayer.create(context, music.getSong());
                     mediaPlayer.start();
                     currentPosition = position;
                     holder.play.setImageResource(R.drawable.pause);
                     currentPlayingButton = holder.play;
+                } else {
                     if (currentPosition != position) {
 
                         mediaPlayer.reset();
                         mediaPlayer.release();
                         currentPlayingButton.setImageResource(R.drawable.ic_play);
+                        currentPlayingButton = holder.play;
+
+
                         mediaPlayer = MediaPlayer.create(context, music.getSong());
                         mediaPlayer.start();
                         holder.play.setImageResource(R.drawable.pause);
-                        currentPlayingButton = holder.play;
                         currentPosition = position;
                     } else {
                         if (mediaPlayer.isPlaying()) {
                             Log.v("Adapter", "mediaPlayer should be playing here" + mediaPlayer.isPlaying());
                             mediaPlayer.pause();
                             holder.play.setImageResource(R.drawable.ic_play);
-                            currentPlayingButton = null;
+                            Log.v("Adapter", "user clicked the same row and isPlaying");
+                            Log.v("Adapter", "" + currentPosition);
+                            Log.v("Adapter", "mediaPlayer shouldn't be playing here" + mediaPlayer.isPlaying());
+
                         } else {
                             Log.v("Adapter", "mediaPlayer shouldn't be playing here" + mediaPlayer.isPlaying());
                             mediaPlayer.start();
                             holder.play.setImageResource(R.drawable.pause);
-                            currentPlayingButton = holder.play;
+                            Log.v("Adapter", "current pos == pos and !isPlaying");
+                            Log.v("Adapter", "" + currentPosition);
+                            Log.v("Adapter", "mediaPlayer should be playing here" + mediaPlayer.isPlaying());
                         }
                     }
+                }
+
+            }
+        });
+
+
+        holder.stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mediaPlayer != null) {
+
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                    holder.play.setImageResource(R.drawable.ic_play);
 
                 }
             }
 
         });
 
-        holder.stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mediaPlayer != null) {
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-                    mediaPlayer = null;
-                    holder.play.setImageResource(R.drawable.ic_play);
-                    }
-            }
-             });
 
         return convertView;
-        }}
 
 
+    }
+
+
+}
