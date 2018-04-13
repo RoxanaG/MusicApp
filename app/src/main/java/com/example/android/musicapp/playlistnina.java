@@ -9,50 +9,32 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-
-public class playlistnina extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class playlistnina extends AppCompatActivity {
+    private ArrayList<Music> arrayList;
+    private ListView playlist;
+    private MusicAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.playlist );
-
-        ArrayList<textWords> words = new ArrayList<textWords>();
-        words.add(new textWords("I Put A Spell On You"," To Be Free The Nina Simone Story"));
-        words.add(new textWords("Feeling Good","Compact Jazz: Nina Simone"));
-        words.add(new textWords("Central Park Blues ","Little Girl Blue"));
-        words.add(new textWords("Here Comes the Sun","Here Comes the Sun"));
-        words.add(new textWords("Sinnerman","The Best Of Nina Simone "));
-         words.add(new textWords("My Way","Here Comes the Sun"));
-        words.add(new textWords("In The Dark","Nina Simone Sings the Blues"));
-        words.add(new textWords("Since I Fell for You","Nina Simone Sings the Blues"));
-        words.add(new textWords("The House of the Rising Sun","Nina Simone Sings the Blues"));
-        words.add(new textWords("My Man's Gone Now","Nina Simone Sings the Blues"));
-        words.add(new textWords("Ain't Got No, I Got Life","'Nuff Said!"));
-        words.add(new textWords("In the Morning","'Nuff Said!"));
-        words.add(new textWords("Peace of Mind","'Nuff Said!"));
-        textAdapter adapter = new textAdapter(this, words);
+        setContentView(R.layout.playlist);
         ListView playlist = (ListView) findViewById(R.id.playerList);
+        ArrayList<Music> arrayList = new ArrayList<>();
+        arrayList.add(new Music("I Put A Spell On You", " To Be Free The Nina Simone Story", R.raw.putaspell));
+        arrayList.add(new Music("Feeling Good", "Compact Jazz: Nina Simone", R.raw.feelinggood));
+        arrayList.add(new Music("Central Park Blues ", "Little Girl Blue", R.raw.centralpark));
+        arrayList.add(new Music("Here Comes the Sun", "Here Comes the Sun", R.raw.herecomesthesun));
+        arrayList.add(new Music("Sinnerman", "The Best Of Nina Simone ", R.raw.sinnerman));
+        arrayList.add(new Music("My Way", "Here Comes the Sun", R.raw.myway));
+        arrayList.add(new Music("In The Dark", "Nina Simone Sings the Blues", R.raw.inthedark));
+        arrayList.add(new Music("Since I Fell for You", "Nina Simone Sings the Blues", R.raw.ifellforyou));
+        arrayList.add(new Music("The House of the Rising Sun", "Nina Simone Sings the Blues", R.raw.houseofrising));
+        arrayList.add(new Music("My Man's Gone Now", "Nina Simone Sings the Blues", R.raw.myman));
+        arrayList.add(new Music("Ain't Got No, I Got Life", "'Nuff Said!", R.raw.igotno));
+        arrayList.add(new Music("In the Morning", "'Nuff Said!", R.raw.inthemorning));
+        arrayList.add(new Music("Peace of Mind", "'Nuff Said!", R.raw.peaceofmind));
+
+        adapter = new MusicAdapter(this, R.layout.playlist_item, arrayList);
         playlist.setAdapter(adapter);
-
-
-
-    playlist.setOnItemClickListener(this);
-
-
     }
-public int[] resID = {
-            R.raw.putaspell,R.raw.feelinggood,R.raw.centralpark,R.raw.herecomesthesun,R.raw.sinnerman,R.raw.myway,R.raw.inthedark,R.raw.ifellforyou,R.raw.houseofrising,R.raw.myman,R.raw.igotno,R.raw.inthemorning,R.raw.peaceofmind
-};
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent i = new Intent(playlistnina.this,mediaPlayer.class);
-        Intent  song = i.putExtra("Song",resID[position]);
-        Intent  song_name=i.putExtra("SongName",getText(position));
-        startActivity(i);
-    }
-        }
-
-
-
+}

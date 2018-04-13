@@ -2,6 +2,7 @@ package com.example.android.musicapp;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +15,17 @@ import java.util.ArrayList;
 public class MusicAdapter extends BaseAdapter {
     private Context context;
     private int layout;
+    private int currentPosition;
     private ArrayList arrayList;
     private MediaPlayer mediaPlayer;
     private boolean flag = true;
+    private ImageView currentPlayingButton;
 
     public MusicAdapter(Context context, int layout, ArrayList<Music> arrayList) {
         this.context = context;
         this.layout = layout;
         this.arrayList = arrayList;
     }
-
 
     @Override
     public int getCount() {
@@ -39,73 +41,94 @@ public class MusicAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-    private class Holder{
-        TextView textName,textAlbum;
+
+    private class Holder {
+        TextView textName, textAlbum;
         ImageView play, stop;
     }
 
-
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int pos, View convertView, final ViewGroup parent) {
         final Holder holder;
-        if (convertView == null){
+        final int position = pos;
+        if (convertView == null) {
             holder = new Holder();
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(layout,null);
+            convertView = layoutInflater.inflate(layout, null);
             holder.textName = (TextView) convertView.findViewById(R.id.textName);
             holder.textAlbum = (TextView) convertView.findViewById(R.id.textAlbum);
             holder.play = convertView.findViewById(R.id.play);
             holder.stop = convertView.findViewById(R.id.stop);
-
+            currentPlayingButton = holder.play;
             convertView.setTag(holder);
-        }else {
-            holder = (Holder) convertView.getTag();
 
+        } else {
+            holder = (Holder) convertView.getTag();
         }
+
         final Music music = (Music) arrayList.get(position);
         holder.textName.setText(music.getName());
         holder.textAlbum.setText(music.getAlbum());
-        mediaPlayer = new MediaPlayer();
+        if (currentPlayingButton != null) {
+            holder.play.setImageResource(R.drawable.ic_play);
+            currentPlayingButton = holder.play;
+
+            }
+
+
 
         holder.play.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-             if (flag){
-   flag = false;
-    mediaPlayer = MediaPlayer.create(context, music.getSong());
-            mediaPlayer.start();
-            currentPosition = position;
-        }else {
-            if (currentPosition != position) {
-                mediaPlayer.release();
-                mediaPlayer = MediaPlayer.create(context, music.getSong());
-                mediaPlayer.start();
-        currentPosition = position;
-    } else {
-   if (mediaPlayer.isPlaying()) {
-        mediaPlayer.pause();
-        holder.play.setImageResource(R.drawable.ic_play);
+                if (mediaPlayer == null) {
+                    mediaPlayer = MediaPlayer.create(context, music.getSong());
+                    mediaPlayer.start();
+                    currentPosition = position;
+                    holder.play.setImageResource(R.drawable.pause);
+                    currentPlayingButton = holder.play;
+                    if (currentPosition != position) {
 
-    } else {
-        mediaPlayer.start();
-        holder.play.setImageResource(R.drawable.pause);
-    }
-}
+                        mediaPlayer.reset();
+                        mediaPlayer.release();
+                        currentPlayingButton.setImageResource(R.drawable.ic_play);
+                        mediaPlayer = MediaPlayer.create(context, music.getSong());
+                        mediaPlayer.start();
+                        holder.play.setImageResource(R.drawable.pause);
+                        currentPlayingButton = holder.play;
+                        currentPosition = position;
+                    } else {
+                        if (mediaPlayer.isPlaying()) {
+                            Log.v("Adapter", "mediaPlayer should be playing here" + mediaPlayer.isPlaying());
+                            mediaPlayer.pause();
+                            holder.play.setImageResource(R.drawable.ic_play);
+                            currentPlayingButton = null;
+                        } else {
+                            Log.v("Adapter", "mediaPlayer shouldn't be playing here" + mediaPlayer.isPlaying());
+                            mediaPlayer.start();
+                            holder.play.setImageResource(R.drawable.pause);
+                            currentPlayingButton = holder.play;
+                        }
+                    }
+
+                }
             }
-        }});
+
+        });
 
         holder.stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!flag){
+                if (mediaPlayer != null) {
                     mediaPlayer.stop();
                     mediaPlayer.release();
-                    flag = true;
-                }
-                holder.play.setImageResource(R.drawable.ic_play);
+                    mediaPlayer = null;
+                    holder.play.setImageResource(R.drawable.ic_play);
+                    }
             }
-        });
-        return convertView;
+             });
 
-    }
-}
+        return convertView;
+        }}
+
+

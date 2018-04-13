@@ -38,17 +38,14 @@ GridView gridView;
                     break;
                 }
                 case 3:{
-                    startActivity(new Intent(this, playlistlp.class));
-                    break;
-                }
-                case 4:{
                     startActivity(new Intent(this, playlistgorillaz.class));
                     break;
                 }
-                case 5:{
+                case 4:{
                     startActivity(new Intent(this, playlistgambino.class));
                     break;
                 }
+
             }
         }
 

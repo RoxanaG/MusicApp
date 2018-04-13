@@ -6,43 +6,32 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-
-
-public class playlistgambino  extends AppCompatActivity {
+public class playlistgambino extends AppCompatActivity {
+    private ArrayList<Music> arrayList;
+    private ListView playlist;
+    private MusicAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.playlist );
-
-        // Create a list of words
-        ArrayList<textWords> words = new ArrayList<textWords>();
-        words.add(new textWords("Fire Fly", " Camp"));
-        words.add(new textWords("Letter Home", "  Camp"));
-        words.add(new textWords("You See Me", "Camp"));
-        words.add(new textWords("The Library", "Because the Internet"));
-        words.add(new textWords("Dial Up", "Because the Internet"));
-        words.add(new textWords("Death by Numbers", "Because the Internet"));
-        words.add(new textWords("Crawl", "Because the Internet"));
-        words.add(new textWords("Me and Your Mama", "Awaken, My Love!"));
-        words.add(new textWords("Boogieman", "Awaken, My Love!"));
-        words.add(new textWords("Riot", "Awaken, My Love!"));
-        words.add(new textWords("Redbone", "Awaken, My Love!"));
-        words.add(new textWords("Baby Boy", "Awaken, My Love!"));
-        words.add(new textWords("Stand Tall", "Awaken, My Love!"));
-
-        // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
-        // adapter knows how to create list items for each item in the list.
-        textAdapter adapter = new textAdapter(this, words);
-
-        // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
-        // There should be a {@link ListView} with the view ID called list, which is declared in the
-        // word_list.xml layout file.
+        setContentView(R.layout.playlist);
         ListView playlist = (ListView) findViewById(R.id.playerList);
+        ArrayList<Music> arrayList = new ArrayList<Music>();
+        arrayList.add(new Music("Firefly", " Camp", R.raw.firefly));
+        arrayList.add(new Music("Letter Home", "  Camp", R.raw.letterhome));
+        arrayList.add(new Music("You See Me", "Camp", R.raw.youseeme));
+        arrayList.add(new Music("Worldstar", "Because the Internet", R.raw.worldstar));
+        arrayList.add(new Music("The Palisades Ft. Christian Rich ", "Because the Internet", R.raw.thepalisades));
+        arrayList.add(new Music(" Heartbeat", "Because the Internet", R.raw.heartbeat));
+        arrayList.add(new Music("Crawl", "Because the Internet", R.raw.crawl));
+        arrayList.add(new Music("Me and Your Mama", "Awaken, My Love!", R.raw.meandyourmama));
+        arrayList.add(new Music("Sweatpants", "Awaken, My Love!", R.raw.sweatpants));
+        arrayList.add(new Music("Riot", "Awaken, My Love!", R.raw.riot));
+        arrayList.add(new Music("Redbone", "Awaken, My Love!", R.raw.redbone));
+        arrayList.add(new Music("Baby Boy", "Awaken, My Love!", R.raw.babyboy));
+        arrayList.add(new Music("Stand Tall", "Awaken, My Love!", R.raw.standtall));
 
-        // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
-        // {@link ListView} will display list items for each {@link Word} in the list.
+        adapter = new MusicAdapter(this, R.layout.playlist_item, arrayList);
         playlist.setAdapter(adapter);
     }
 }
-
