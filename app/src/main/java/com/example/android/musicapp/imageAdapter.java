@@ -42,7 +42,7 @@ public class imageAdapter extends BaseAdapter {
 
     private Integer[] mThumbIds = {
             R.drawable.bobdylan, R.drawable.ninasimone,
-            R.drawable.rollingstones, R.drawable.lpsinger,
+            R.drawable.rollingstones,
             R.drawable.gorillaz, R.drawable.gambino,
     };
 }

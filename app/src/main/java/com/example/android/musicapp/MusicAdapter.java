@@ -64,7 +64,6 @@ public class MusicAdapter extends BaseAdapter {
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
-
         }
         final Music music = (Music) arrayList.get(position);
         holder.textName.setText(music.getName());
@@ -88,6 +87,7 @@ public class MusicAdapter extends BaseAdapter {
                     currentPosition = position;
                     holder.play.setImageResource(R.drawable.pause);
                     currentPlayingButton = holder.play;
+                    isPlaying = true;
                 } else {
                     if (currentPosition != position) {
                         mediaPlayer.reset();
