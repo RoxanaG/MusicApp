@@ -13,4 +13,4 @@
         android:horizontalSpacing="10dp"
         android:numColumns="2"
         android:verticalSpacing="10dp" />
-    </RelativeLayout>
+</RelativeLayout>

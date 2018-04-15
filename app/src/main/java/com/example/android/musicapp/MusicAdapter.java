@@ -20,13 +20,13 @@ public class MusicAdapter extends BaseAdapter {
     private MediaPlayer mediaPlayer;
     private boolean flag = true;
     private ImageView currentPlayingButton;
+    private boolean isPlaying;
 
     public MusicAdapter(Context context, int layout, ArrayList<Music> arrayList) {
         this.context = context;
         this.layout = layout;
         this.arrayList = arrayList;
     }
-
 
     @Override
     public int getCount() {
@@ -35,19 +35,18 @@ public class MusicAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return arrayList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     private class Holder {
         TextView textName, textAlbum;
         ImageView play, stop;
     }
-
 
     @Override
     public View getView(final int pos, View convertView, final ViewGroup parent) {
@@ -67,21 +66,23 @@ public class MusicAdapter extends BaseAdapter {
             holder = (Holder) convertView.getTag();
 
         }
-
-
         final Music music = (Music) arrayList.get(position);
         holder.textName.setText(music.getName());
         holder.textAlbum.setText(music.getAlbum());
-        if (currentPlayingButton != null) {
+        if (currentPosition != position) {
             holder.play.setImageResource(R.drawable.ic_play);
-            currentPlayingButton = holder.play;
+        } else {
+            if (isPlaying) {
+                holder.play.setImageResource(R.drawable.pause);
+            } else {
+                holder.play.setImageResource(R.drawable.ic_play);
+            }
         }
         holder.play.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 if (mediaPlayer == null) {
-
                     mediaPlayer = MediaPlayer.create(context, music.getSong());
                     mediaPlayer.start();
                     currentPosition = position;
@@ -89,41 +90,30 @@ public class MusicAdapter extends BaseAdapter {
                     currentPlayingButton = holder.play;
                 } else {
                     if (currentPosition != position) {
-
                         mediaPlayer.reset();
                         mediaPlayer.release();
                         currentPlayingButton.setImageResource(R.drawable.ic_play);
                         currentPlayingButton = holder.play;
 
-
                         mediaPlayer = MediaPlayer.create(context, music.getSong());
                         mediaPlayer.start();
+                        isPlaying = true;
                         holder.play.setImageResource(R.drawable.pause);
                         currentPosition = position;
                     } else {
                         if (mediaPlayer.isPlaying()) {
-                            Log.v("Adapter", "mediaPlayer should be playing here" + mediaPlayer.isPlaying());
                             mediaPlayer.pause();
+                            isPlaying = false;
                             holder.play.setImageResource(R.drawable.ic_play);
-                            Log.v("Adapter", "user clicked the same row and isPlaying");
-                            Log.v("Adapter", "" + currentPosition);
-                            Log.v("Adapter", "mediaPlayer shouldn't be playing here" + mediaPlayer.isPlaying());
-
                         } else {
-                            Log.v("Adapter", "mediaPlayer shouldn't be playing here" + mediaPlayer.isPlaying());
                             mediaPlayer.start();
+                            isPlaying = true;
                             holder.play.setImageResource(R.drawable.pause);
-                            Log.v("Adapter", "current pos == pos and !isPlaying");
-                            Log.v("Adapter", "" + currentPosition);
-                            Log.v("Adapter", "mediaPlayer should be playing here" + mediaPlayer.isPlaying());
                         }
                     }
                 }
-
             }
         });
-
-
         holder.stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,17 +123,10 @@ public class MusicAdapter extends BaseAdapter {
                     mediaPlayer.release();
                     mediaPlayer = null;
                     holder.play.setImageResource(R.drawable.ic_play);
-
+                    isPlaying = false;
                 }
             }
-
         });
-
-
         return convertView;
-
-
     }
-
-
 }

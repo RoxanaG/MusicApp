@@ -6,18 +6,16 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-
-public class  playlistbob extends AppCompatActivity {
-
+public class playlistbob extends AppCompatActivity {
     private ArrayList<Music> arrayList;
     private ListView playlist;
-private MusicAdapter adapter;
+    private MusicAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
-        ListView playlist =  findViewById(R.id.playerList);
+        ListView playlist = findViewById(R.id.playerList);
         ArrayList<Music> arrayList = new ArrayList<>();
         arrayList.add(new Music("Like a rolling stone", "Highway 61 Revisited", R.raw.likearollingstone));
         arrayList.add(new Music("Blowin in The Wind", "Freewheelin' Bob Dylan", R.raw.blowing));
@@ -33,7 +31,7 @@ private MusicAdapter adapter;
         arrayList.add(new Music("Subterranean Homesick Blues", "Bringing It All Back Home", R.raw.subterranean));
         arrayList.add(new Music("Not Dark Yet", "Time Out of Mind", R.raw.notdarkyet));
 
-        adapter = new MusicAdapter(this,R.layout.playlist_item,arrayList);
+        adapter = new MusicAdapter(this, R.layout.playlist_item, arrayList);
         playlist.setAdapter(adapter);
-
-    }}
+    }
+}

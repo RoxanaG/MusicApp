@@ -1,7 +1,5 @@
 package com.example.android.musicapp;
 
-
-
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
