@@ -19,7 +19,7 @@ public class playlistnina extends AppCompatActivity {
         setContentView(R.layout.playlist);
         ListView playlist = findViewById(R.id.playerList);
         ArrayList<Music> arrayList = new ArrayList<>();
-        arrayList.add(new Music("I Put A Spell On You", " To Be Free The Nina Simone Story", R.raw.putaspell));
+        arrayList.add(new Music("I Put A Spell On You", " Be Free The Nina Simone Story", R.raw.putaspell));
         arrayList.add(new Music("Feeling Good", "Compact Jazz: Nina Simone", R.raw.feelinggood));
         arrayList.add(new Music("Central Park Blues ", "Little Girl Blue", R.raw.centralpark));
         arrayList.add(new Music("Here Comes the Sun", "Here Comes the Sun", R.raw.herecomesthesun));
