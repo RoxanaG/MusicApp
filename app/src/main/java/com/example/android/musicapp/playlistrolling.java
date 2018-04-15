@@ -1,7 +1,6 @@
 package com.example.android.musicapp;
 
 import android.os.Bundle;
-import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
@@ -16,8 +15,8 @@ public class playlistrolling extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
-        ListView playlist = (ListView) findViewById(R.id.playerList);
-        ArrayList<Music> arrayList = new ArrayList<Music>();
+        ListView playlist = findViewById(R.id.playerList);
+        ArrayList<Music> arrayList = new ArrayList<>();
         arrayList.add(new Music("Gimme Shelter", "Let It Bleed", R.raw.gimmieshelter));
         arrayList.add(new Music("Monkey Man", "Let It Bleed", R.raw.monkeyman));
         arrayList.add(new Music("Let It Bleed", "Let It Bleed", R.raw.letitbleed));

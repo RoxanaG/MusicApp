@@ -1,10 +1,9 @@
 package com.example.android.musicapp;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
+
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class playlistnina extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
-        ListView playlist = (ListView) findViewById(R.id.playerList);
+        ListView playlist = findViewById(R.id.playerList);
         ArrayList<Music> arrayList = new ArrayList<>();
         arrayList.add(new Music("I Put A Spell On You", " To Be Free The Nina Simone Story", R.raw.putaspell));
         arrayList.add(new Music("Feeling Good", "Compact Jazz: Nina Simone", R.raw.feelinggood));

@@ -2,7 +2,6 @@ package com.example.android.musicapp;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ public class MusicAdapter extends BaseAdapter {
     private int currentPosition;
     private ArrayList arrayList;
     private MediaPlayer mediaPlayer;
-    private boolean flag = true;
     private ImageView currentPlayingButton;
     private boolean isPlaying;
 

@@ -15,8 +15,8 @@ public class playlistgambino extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
-        ListView playlist = (ListView) findViewById(R.id.playerList);
-        ArrayList<Music> arrayList = new ArrayList<Music>();
+        ListView playlist = findViewById(R.id.playerList);
+        ArrayList<Music> arrayList = new ArrayList<>();
         arrayList.add(new Music("Firefly", " Camp", R.raw.firefly));
         arrayList.add(new Music("Letter Home", "  Camp", R.raw.letterhome));
         arrayList.add(new Music("You See Me", "Camp", R.raw.youseeme));

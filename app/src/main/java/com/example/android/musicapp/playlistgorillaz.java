@@ -15,8 +15,8 @@ public class playlistgorillaz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
-        ListView playlist = (ListView) findViewById(R.id.playerList);
-        ArrayList<Music> arrayList = new ArrayList<Music>();
+        ListView playlist = findViewById(R.id.playerList);
+        ArrayList<Music> arrayList = new ArrayList<>();
         arrayList.add(new Music("Clint Eastwood", " Gorillaz", R.raw.clint));
         arrayList.add(new Music("Rock The House", "  Gorillaz", R.raw.rockthehouse));
         arrayList.add(new Music("19-2000", " Gorillaz", R.raw.song19_2000));
