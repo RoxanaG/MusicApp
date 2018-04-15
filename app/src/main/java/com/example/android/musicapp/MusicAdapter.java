@@ -54,8 +54,8 @@ public class MusicAdapter extends BaseAdapter {
             holder = new Holder();
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(layout, null);
-            holder.textName = (TextView) convertView.findViewById(R.id.textName);
-            holder.textAlbum = (TextView) convertView.findViewById(R.id.textAlbum);
+            holder.textName =  convertView.findViewById(R.id.textName);
+            holder.textAlbum =  convertView.findViewById(R.id.textAlbum);
             holder.play = convertView.findViewById(R.id.play);
             holder.stop = convertView.findViewById(R.id.stop);
             currentPlayingButton = holder.play;
