@@ -19,14 +19,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".playlistbob"
             android:label="Bob Dylan"
             android:launchMode="singleTop"
             android:parentActivityName="com.example.android.musicapp.MainActivity">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.musicapp.MainActivity" />
@@ -36,7 +34,6 @@
             android:label="Nina Simone"
             android:launchMode="singleTop"
             android:parentActivityName="com.example.android.musicapp.MainActivity">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.musicapp.MainActivity" />
@@ -46,7 +43,6 @@
             android:label="The Rolling Stones"
             android:launchMode="singleTop">
             android:parentActivityName="com.example.android.musicapp.MainActivity" >
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.musicapp.MainActivity" />
@@ -56,7 +52,6 @@
             android:label="Gorillaz"
             android:launchMode="singleTop"
             android:parentActivityName="com.example.android.musicapp.MainActivity">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.musicapp.MainActivity" />
@@ -66,7 +61,6 @@
             android:label="Childish Gambino"
             android:launchMode="singleTop"
             android:parentActivityName="com.example.android.musicapp.MainActivity">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.musicapp.MainActivity" />
